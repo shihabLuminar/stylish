@@ -106,28 +106,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ),
       ),
       bottomNavigationBar: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextButton(
-            child: Text(
-              "Prev",
-              style: TextStyle(
-                color: ColorConstatns.grey,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+          if (currentindex != 0)
+            TextButton(
+              child: Text(
+                "Prev",
+                style: TextStyle(
+                  color: ColorConstatns.grey,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
+              onPressed: () {
+                if (currentindex > 0) {
+                  currentindex--;
+                  setState(() {});
+                }
+              },
             ),
-            onPressed: () {
-              if (currentindex > 0) {
-                currentindex--;
-                setState(() {});
-              }
-            },
-          ),
-
+          Spacer(),
           TextButton(
             child: Text(
-              "Next",
+              currentindex == 2 ? "Get Started" : "Next",
               style: TextStyle(
                 color: ColorConstatns.primary,
                 fontSize: 18,
