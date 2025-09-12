@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stylish/core/constants/color_constatns.dart';
 import 'package:stylish/core/constants/image_constants.dart';
 import 'package:stylish/view/home_screen/home_screen.dart';
+import 'package:stylish/view/sign_in_screen/sign_in_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -60,7 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => SignInScreen()),
                 (route) => false,
               );
             },
@@ -138,6 +139,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               if (currentindex < data.length - 1) {
                 currentindex++;
                 setState(() {});
+              } else if (currentindex == 2) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()),
+                  (route) => false,
+                );
               }
             },
           ),
