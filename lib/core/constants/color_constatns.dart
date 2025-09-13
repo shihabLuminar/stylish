@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ColorConstatns {
+  // common colors
+  static const Color white = Colors.white;
+  static const Color black = Colors.black;
+  static const Color red = Colors.red;
+  static const Color green = Colors.green;
+  static const Color yellow = Colors.yellow;
+
   static const Color grey = Color(0xffA0A0A1);
+  static const Color darkgrey = Color(0xff575757);
+
   static const Color primary = Color(0xffF83758);
+  static const Color lightRed = Color(0xffFCF3F6);
 }

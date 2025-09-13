@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.bottomPadding = 31,
+    this.formkey,
   });
   final String hint;
   final IconData? icon;
@@ -19,30 +20,42 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final double bottomPadding;
+  final Key? formkey;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: bottomPadding),
-      child: TextFormField(
-        obscureText: obscureText,
-        controller: controller,
-        decoration: InputDecoration(
-          label: Text(hint),
-          filled: true,
-          fillColor: Color(0xffF3F3F3),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Color(0xffA8A8A9)),
+      child: Form(
+        key: formkey,
+        child: TextFormField(
+          obscureText: obscureText,
+          controller: controller,
+          decoration: InputDecoration(
+            label: Text(hint),
+            filled: true,
+            fillColor: Color(0xffF3F3F3),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: Color(0xffA8A8A9)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: ColorConstatns.black),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: ColorConstatns.red),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: ColorConstatns.black),
+            ),
+            prefixIcon: Icon(icon, size: 24, color: Color(0xff626262)),
+            suffixIcon: suffixIcon,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: ColorConstatns.primary),
-          ),
-          prefixIcon: Icon(icon, size: 24, color: Color(0xff626262)),
-          suffixIcon: suffixIcon,
+          validator: validator,
         ),
-        validator: validator,
       ),
     );
   }
