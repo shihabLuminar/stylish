@@ -13,4 +13,5 @@ class ColorConstatns {
 
   static const Color primary = Color(0xffF83758);
   static const Color lightRed = Color(0xffFCF3F6);
+  static const Color white1 = Color(0xffF2F2F2);
 }

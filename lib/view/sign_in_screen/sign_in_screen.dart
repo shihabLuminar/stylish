@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish/core/constants/color_constatns.dart';
 import 'package:stylish/core/constants/image_constants.dart';
+import 'package:stylish/view/get_started_screen/get_started_screen.dart';
 import 'package:stylish/view/global_widgets/custom_button.dart';
 import 'package:stylish/view/global_widgets/custom_socialmedia_avatar.dart';
 import 'package:stylish/view/global_widgets/custom_text_field.dart';
@@ -77,7 +78,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 text: 'Login',
                 onTap: () {
                   if (userNameformKey.currentState!.validate() &&
-                      passformKey.currentState!.validate()) {}
+                      passformKey.currentState!.validate()) {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GetStartedScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  }
                 },
               ),
               SizedBox(height: 75),
@@ -98,10 +107,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 spacing: 10,
                 children: [
-                  CustomSocialMediaAvatar(imagePath: ImageConstants.google_svg),
-                  CustomSocialMediaAvatar(imagePath: ImageConstants.apple_svg),
+                  CustomSocialMediaAvatar(imagePath: ImageConstants.googleSvg),
+                  CustomSocialMediaAvatar(imagePath: ImageConstants.appleSvg),
                   CustomSocialMediaAvatar(
-                    imagePath: ImageConstants.facebook_svg,
+                    imagePath: ImageConstants.facebookSvg,
                   ),
                 ],
               ),
