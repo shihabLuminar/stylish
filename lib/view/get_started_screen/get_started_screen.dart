@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:stylish/core/constants/color_constatns.dart';
 import 'package:stylish/core/constants/image_constants.dart';
+import 'package:stylish/view/bottom_navbar_screen/bottom_navbar_screen.dart';
 import 'package:stylish/view/global_widgets/custom_button.dart';
 
 class GetStartedScreen extends StatelessWidget {
@@ -60,7 +61,18 @@ class GetStartedScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 44),
 
-                CustomButton(text: "Get Started"),
+                CustomButton(
+                  text: "Get Started",
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BottomNavbarScreen(),
+                      ),
+                      (route) => false,
+                    );
+                  },
+                ),
                 SizedBox(height: 34),
               ],
             ),
