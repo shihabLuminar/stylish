@@ -9,9 +9,13 @@ class ColorConstatns {
   static const Color yellow = Colors.yellow;
 
   static const Color grey = Color(0xffA0A0A1);
+  static const Color grey1 = Color(0xffBBBBBB);
   static const Color darkgrey = Color(0xff575757);
 
   static const Color primary = Color(0xffF83758);
+  static const Color secondary = Color(0xff4392F9);
+
   static const Color lightRed = Color(0xffFCF3F6);
   static const Color white1 = Color(0xffF2F2F2);
+  static const Color white2 = Color(0xffFDFDFD);
 }
