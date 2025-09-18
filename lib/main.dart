@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stylish/view/bottom_navbar_screen/bottom_navbar_screen.dart';
+import 'package:stylish/view/home_screen/home_screen.dart';
 import 'package:stylish/view/splash_screen/splash_screen.dart';
 
 void main() {
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MyApp',
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
-      home: const SplashScreen(),
+      home: const BottomNavbarScreen(),
     );
   }
 }

@@ -1,14 +1,22 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:stylish/core/constants/color_constatns.dart';
 import 'package:stylish/core/constants/image_constants.dart';
 import 'package:stylish/model/home_screen_model/category_model.dart';
 import 'package:stylish/view/global_widgets/fileter_card.dart';
 import 'package:stylish/view/home_screen/widgets/categoy_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentSlider = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +61,73 @@ class HomeScreen extends StatelessWidget {
 
           // category and filter section
           _buildCategoryAndFilterSection(),
+
+          // 3 -- carousel section
+          _buildCarouselSection(),
         ],
       ),
+    );
+  }
+
+  Widget _buildCarouselSection() {
+    List<String> imageurls = [
+      "https://images.pexels.com/photos/29215915/pexels-photo-29215915.jpeg",
+      "https://images.pexels.com/photos/13816477/pexels-photo-13816477.jpeg",
+      "https://images.pexels.com/photos/14314422/pexels-photo-14314422.jpeg",
+      "https://images.pexels.com/photos/15505929/pexels-photo-15505929.jpeg",
+    ];
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: CarouselSlider(
+            options: CarouselOptions(
+              height: 189,
+              // aspectRatio: 16 / 3,
+              viewportFraction: 1,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              enlargeFactor: .3,
+              onPageChanged: (index, reason) {
+                currentSlider = index;
+                setState(() {});
+              },
+              scrollDirection: Axis.horizontal,
+            ),
+            items: List.generate(
+              imageurls.length,
+              (index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(imageurls[index]),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        AnimatedSmoothIndicator(
+          activeIndex: currentSlider,
+          count: imageurls.length,
+          effect: ExpandingDotsEffect(),
+        ),
+      ],
     );
   }
 
@@ -159,13 +232,13 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 22),
             child: Row(
               spacing: 16,
-              children: List.generate(
-                categoryList.length,
-                (index) => CategoryWidget(
-                  imgePath: categoryList[index].imageUrl,
-                  category: categoryList[index].category,
-                ),
-              ),
+              children: List.generate(categoryList.length, (index) {
+                CategoryModel currentObject = categoryList[index];
+                return CategoryWidget(
+                  imgePath: currentObject.imageUrl,
+                  category: currentObject.category,
+                );
+              }),
             ),
           ),
         ),
